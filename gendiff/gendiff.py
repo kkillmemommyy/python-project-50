@@ -20,4 +20,4 @@ def generate_diff(path_file1, path_file2):
 
     with open(path_file1, "r") as file1:
         with open(path_file2, "r") as file2:
-            print(gen_diff(json.load(file1), json.load(file2)))
+            return gen_diff(json.load(file1), json.load(file2))
