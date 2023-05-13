@@ -1,7 +1,7 @@
-import json
+from gendiff.format_parser import deserialize
 
 
-def generate_diff(path_file1, path_file2):
+def generate_diff(path1, path2):
 
     def gen_diff(dict_was, dict_become):
         keys = sorted(dict_was.keys() | dict_become.keys())
@@ -18,6 +18,4 @@ def generate_diff(path_file1, path_file2):
                 diff.append(f"    {key}: {dict_was[key]}")
         return '{\n' + '\n'.join(diff) + '\n}'
 
-    with open(path_file1, "r") as file1:
-        with open(path_file2, "r") as file2:
-            return gen_diff(json.load(file1), json.load(file2))
+    return gen_diff(deserialize(path1), deserialize(path2))
